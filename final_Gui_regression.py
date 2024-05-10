@@ -14,6 +14,23 @@ from sklearn.svm import SVR
 from sklearn.model_selection import train_test_split,GridSearchCV
 from joblib import load
 df = pd.read_csv("D:/ammar college/Level 3/semester2/Advanced ML/housing.csv")
+
+# svr_model = SVR()
+# svr_params = {
+#     'kernel': 'rbf',       # You can choose from 'linear', 'poly', 'rbf', 'sigmoid'
+#     'C': 30,              # Regularization parameter
+#     'epsilon': 0.2,        # Epsilon parameter in the epsilon-SVR model
+#     'gamma': 'scale'      # Kernel coefficient for 'rbf', 'poly', and 'sigmoid'
+
+# }
+
+# # Create SVR model with specified parameters
+# svr_model = SVR(**svr_params)
+
+
+# # #FIT THE MODEL USING THE COMPLETE TRAINING DATA FOR BETTER PERFORMANCE
+# svr_model.fit(X_train, y_train)
+
 # Load the saved model
 svr_model = load('svr_model.joblib')
 X = df.drop(columns='median_house_value')
