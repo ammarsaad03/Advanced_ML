@@ -58,37 +58,31 @@ accuracy = accuracy_score(y_test, target_prediction)
 print("Decision tree model accuracy: ",accuracy)
 #####neural network
 # Define the input layer
-input_layer = tf.keras.Input(shape=(X_train.shape[1],))
+# input_layer = tf.keras.Input(shape=(X_train.shape[1],))
    
-hidden1 = tf.keras.layers.Dense(100, activation='relu')(input_layer)
-hidden2 = tf.keras.layers.Dropout(0.3)(hidden1)  # Adding dropout for regularization
-hidden3 = tf.keras.layers.Dense(50, activation='relu')(hidden2)
-output_layer = tf.keras.layers.Dense(1, activation='sigmoid')(hidden3)
-# Create the model
-NN_model = tf.keras.Model(inputs=input_layer, outputs=output_layer)
+# hidden1 = tf.keras.layers.Dense(100, activation='relu')(input_layer)
+# hidden2 = tf.keras.layers.Dropout(0.3)(hidden1)  # Adding dropout for regularization
+# hidden3 = tf.keras.layers.Dense(50, activation='relu')(hidden2)
+# output_layer = tf.keras.layers.Dense(1, activation='sigmoid')(hidden3)
+# # Create the model
+# NN_model = tf.keras.Model(inputs=input_layer, outputs=output_layer)
    
-# Compile the model( adam:Adaptive Moment Estimation)
-optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)  # Adjust learning rate
-NN_model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
-# NN_model.compile(optimizer="Adam", loss='binary_crossentropy', metrics=['accuracy'])
+# # Compile the model( adam:Adaptive Moment Estimation)
+# optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)  # Adjust learning rate
+# NN_model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+# # NN_model.compile(optimizer="Adam", loss='binary_crossentropy', metrics=['accuracy'])
    
-# Train the model
-history = NN_model.fit(X_train, y_train, epochs=10, batch_size=25, validation_split=0.25)
+# # Train the model
+# history = NN_model.fit(X_train, y_train, epochs=10, batch_size=25, validation_split=0.25)
    
-# Evaluate the model
-accuracy = NN_model.evaluate(X_test, y_test)[1]
+# # Evaluate the model
+# accuracy = NN_model.evaluate(X_test, y_test)[1]
 
 print("Neural Network model accuracy: ",accuracy)
 # predictions = model.predict(X_test)
 from joblib import dump
 dump(NN_model, 'NN_model.joblib')
 dump(history, 'history_NN_model.joblib')
-
-# from joblib import load
-# NN_model = load('NN_model.joblib')
-# history = load('history_NN_model.joblib')
-
-
 cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome']
 
 def predict_deposit():
